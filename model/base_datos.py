@@ -81,7 +81,8 @@ def crear_tablas():
             especialidad TEXT,
             universidad TEXT,
             direccion_consultorio TEXT,
-            telefono_consultorio TEXT
+            telefono_consultorio TEXT,
+            ruta_avatar TEXT
         )
         """)
 
@@ -142,9 +143,9 @@ def registrar_doctor(usuario, contrasena, nombre_completo, cedula, especialidad,
         # Preparamos la sentencia SQL para insertar el nuevo doctor
         # Usamos '?' como placeholders para prevenir inyección SQL
         cursor.execute("""
-        INSERT INTO Doctores (usuario, contrasena_hash, nombre_completo, cedula_profesional, especialidad, universidad, direccion_consultorio, telefono_consultorio)
+        INSERT INTO Doctores (usuario, contrasena_hash, nombre_completo, cedula_profesional, especialidad, universidad, direccion_consultorio, telefono_consultorio, ruta_avatar)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-        """, (usuario, contrasena_hash, nombre_completo, cedula, especialidad, universidad, direccion, telefono))
+        """, (usuario, contrasena_hash, nombre_completo, cedula, especialidad, universidad, direccion, telefono, None))
 
         conn.commit()
         print(f"Éxito: Doctor '{usuario}' registrado.")
